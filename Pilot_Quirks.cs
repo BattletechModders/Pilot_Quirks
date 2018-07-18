@@ -214,7 +214,7 @@ namespace Pilot_Quirks
                
                 foreach (var p in pilots)
                 {
-                    if (p.pilotDef.PilotTags.Contains("Merchant"))
+                    if (p.pilotDef.PilotTags.Contains("pilot_klutz"))
                     {
                         tagCount++;
                     }
@@ -229,13 +229,12 @@ namespace Pilot_Quirks
         {
             static void Postfix(ShopDefItem __instance, ref float __result)
             {
-                float discount = __instance.DiscountModifier;
                 int tagCount = 0;
                 int tagValue = 2; //  TODO implement actual variables MerchantTagValue;
                 var pilots = Traverse.Create("SimGameState").Field("PilotRoster").GetValue<WeightedList<Pilot>>();
                 foreach (var p in pilots)
                 {
-                    if (p.pilotDef.PilotTags.Contains("Merchant"))
+                    if (p.pilotDef.PilotTags.Contains("pilot_klutz"))
                     {
                         tagCount++;
                     }
