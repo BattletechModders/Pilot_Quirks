@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Pilot_Quirks
@@ -148,6 +149,7 @@ namespace Pilot_Quirks
             {
                 Pilot pilot = attacker.GetPilot();
                 Pilot TargetPilot = target.GetPilot();
+
                 if (pilot.pilotDef.PilotTags.Contains("pilot_reckless"))
                 {
                     __result = __result + (float)settings.pilot_reckless_ToHitBonus;
@@ -197,7 +199,51 @@ namespace Pilot_Quirks
                 }
             }
         }
-        
+
+
+        // G untested but compiles
+        [HarmonyPatch(typeof(Shop), "GetPrice")]
+        public static class Patch_GetPrice
+        {
+            public static void Postfix(Shop __instance, ref int __result)
+            {
+                int tagCount = 0;
+                int tagValue = 2; //  TODO implement actual variables MerchantTagValue;
+                int cbills = __result;
+                var pilots = Traverse.Create("SimGameState").Field("PilotRoster").GetValue<WeightedList<Pilot>>();
+               
+                foreach (var p in pilots)
+                {
+                    if (p.pilotDef.PilotTags.Contains("Merchant"))
+                    {
+                        tagCount++;
+                    }
+                }
+
+                __result = cbills - (tagCount * tagValue / 100 * cbills);
+            }
+        }
+
+        [HarmonyPatch(typeof(ShopDefItem))]
+        public class Patch_SellPrice
+        {
+            static void Postfix(ShopDefItem __instance, ref float __result)
+            {
+                float discount = __instance.DiscountModifier;
+                int tagCount = 0;
+                int tagValue = 2; //  TODO implement actual variables MerchantTagValue;
+                var pilots = Traverse.Create("SimGameState").Field("PilotRoster").GetValue<WeightedList<Pilot>>();
+                foreach (var p in pilots)
+                {
+                    if (p.pilotDef.PilotTags.Contains("Merchant"))
+                    {
+                        tagCount++;
+                    }
+                }
+                __result = __result + (tagCount * tagValue / 100f);
+            }
+        }
+
         public static class Helper
         {
             public static Settings LoadSettings()
