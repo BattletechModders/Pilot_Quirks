@@ -42,6 +42,10 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\Dropbox (GaTech)\Battletech Mods\References\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenPro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\References\DOTweenPro.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dropbox (GaTech)\Battletech Mods\References\Newtonsoft.Json.dll</HintPath>
@@ -56,6 +60,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\Dropbox (GaTech)\Battletech Mods\References\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\References\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

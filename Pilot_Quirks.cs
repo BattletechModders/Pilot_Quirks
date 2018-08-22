@@ -128,7 +128,7 @@ namespace Pilot_Quirks
                 {
                     __instance.CompanyStats.ModifyStat<int>("SimGame", 0, "MechTechSkill", StatCollection.StatOperation.Int_Subtract, settings.pilot_tech_TechBonus, -1, true);
                 }
-
+               
                 if (p.pilotDef.PilotTags.Contains("pilot_disgraced"))
                 {
                     __instance.CompanyStats.ModifyStat<int>("SimGame", 0, "Morale", StatCollection.StatOperation.Int_Subtract, settings.pilot_disgraced_MoralePenalty, -1, true);
@@ -158,19 +158,9 @@ namespace Pilot_Quirks
         //    {
         //        foreach (Pilot pilot in __instance.PilotRoster)
         //        {
-        //            if (pilot.pilotDef.PilotTags.Contains("pilot_tech"))
-        //            {
-        //                __instance.CompanyStats.ModifyStat<int>("SimGame", 0, "MechTechSkill", StatCollection.StatOperation.Int_Add, settings.pilot_tech_TechBonus, -1, true);
-        //            }
-
         //            if (pilot.pilotDef.PilotTags.Contains("pilot_disgraced"))
         //            {
         //                __instance.CompanyStats.ModifyStat<int>("SimGame", 0, "Morale", StatCollection.StatOperation.Int_Add, settings.pilot_disgraced_MoralePenalty, -1, true);
-        //            }
-
-        //            if (pilot.pilotDef.PilotTags.Contains("pilot_comstar"))
-        //            {
-        //                __instance.CompanyStats.ModifyStat<int>("SimGame", 0, "MechTechSkill", StatCollection.StatOperation.Int_Add, settings.pilot_comstar_TechBonus, -1, true);
         //            }
 
         //            if (pilot.pilotDef.PilotTags.Contains("pilot_honest"))
